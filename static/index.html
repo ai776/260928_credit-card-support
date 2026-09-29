@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>アオカード会員サポート</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+JP:wght@400;500;600&family=Shippori+Mincho:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand">
+        <span class="mark" aria-hidden="true"></span>
+        <div>
+          <p class="brand-kicker">会員サポート</p>
+          <h1>アオカード</h1>
+        </div>
+      </div>
+      <p class="split" id="engine-line">判断と文章を分けて応答します</p>
+    </header>
+
+    <main>
+      <section class="chat" aria-label="会話">
+        <div class="log" id="log"></div>
+        <div class="samples" id="samples"></div>
+        <form id="composer">
+          <label class="sr" for="message">問い合わせ</label>
+          <textarea
+            id="message"
+            rows="2"
+            maxlength="2000"
+            placeholder="ご用件を書いてください。カード番号と暗証番号は不要です。"
+            required
+          ></textarea>
+          <button type="submit" id="send">送る</button>
+        </form>
+      </section>
+
+      <aside class="rail" aria-label="判断">
+        <p class="rail-kicker">いまの1回</p>
+        <h2>判断してから書く</h2>
+        <ol class="pipeline">
+          <li>問い合わせ</li>
+          <li id="pipe-judge">判断</li>
+          <li id="pipe-route">分岐</li>
+          <li id="pipe-write">文章</li>
+        </ol>
+        <div id="verdict" class="verdict empty">
+          <p>最初の一文が来ると、ここにカテゴリ・確信度・分岐理由が出ます。文章を生成するモデルは、この判断が終わったあとだけ動きます。</p>
+        </div>
+      </aside>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
